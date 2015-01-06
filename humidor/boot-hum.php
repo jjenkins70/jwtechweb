@@ -28,7 +28,7 @@
 
 <?php
    include 'config/db.php';
-   $sql = "SELECT date, format(temp,2), format(hum,2) FROM TempHumid order by date desc LIMIT 144";
+   $sql = "SELECT convert_tz(date,'UTC','EST') as date, format(temp,2), format(hum,2) FROM TempHumid order by date desc LIMIT 144";
    //$result = $mysqli->query($sql);
    $result = mysql_query($sql);
 
