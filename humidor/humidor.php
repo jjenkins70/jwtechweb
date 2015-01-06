@@ -1,8 +1,8 @@
 <?php
-$servername = "jwpublicdb.cwsolm1nl2vx.us-east-1.rds.amazonaws.com";
-$username = "jw_tech_pub";
-$password = "Golfgod70!";
-$dbname = "cigar_monitor";
+$servername = "";
+$username = "";
+$password = "";
+$dbname = "";
 
 // Create Connection
 $mysqli = new mysqli($servername,$username,$password,$dbname);
