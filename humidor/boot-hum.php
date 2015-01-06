@@ -15,8 +15,8 @@
   <div class="row">
   <h3>Temperature and Humidity</h3>
   </div>
-  <div class="row">
-  <table class="table table-striped table-bordered table-hover" data-sort-name="date" data-sort-order="desc">
+  <div class="table-responsive">
+  <table id="dataResults" class="table table-striped table-bordered table-hover" data-sort-name="date" data-sort-order="desc">
   <thead>
   <tr>
 	<th data-field="date" data-sortable="true">Date</th>
