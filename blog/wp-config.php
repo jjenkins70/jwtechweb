@@ -19,10 +19,10 @@
 define('DB_NAME', 'jwtechDB');
 
 /** MySQL database username */
-define('DB_USER', '');
+define('DB_USER', 'jwtech_user');
 
 /** MySQL database password */
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'Golfgod70!');
 
 /** MySQL hostname */
 define('DB_HOST', 'jwtech.cwsolm1nl2vx.us-east-1.rds.amazonaws.com');
