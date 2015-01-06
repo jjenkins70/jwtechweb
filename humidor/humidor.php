@@ -1,15 +1,11 @@
 <?php
-$servername = "jwpublicdb.cwsolm1nl2vx.us-east-1.rds.amazonaws.com";
-$username = "jw_tech_pub";
-$password = "Golfgod70!";
-$dbname = "cigar_monitor";
-
+include "config/database.php";
 // Create Connection
-$mysqli = new mysqli($servername,$username,$password,$dbname);
+//$mysqli = new mysqli($servername,$username,$password,$dbname);
 // Check connection
-if (mysqli_connect_error()) {
-  die("connection failed: ". mysqli_connect_error());
-}
+//if (mysqli_connect_error()) {
+//  die("connection failed: ". mysqli_connect_error());
+//}
 
 $sql = "SELECT date, temp, hum from TempHumid order by date desc";
 $result = $mysqli->query($sql);
