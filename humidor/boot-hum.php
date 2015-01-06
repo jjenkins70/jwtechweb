@@ -19,8 +19,8 @@
   <table id="dataResults" class="table table-striped table-bordered table-hover" data-sort-name="date" data-sort-order="desc">
   <thead>
   <tr>
-	<th data-field="date" data-sortable="true">Date</th>
-	<th data-field="temp" data-sortable="true">Temperature</th>
+	<th data-field="date" data-sortable="true">Date (ET)</th>
+	<th data-field="temp" data-sortable="true">Temperature (F)</th>
 	<th data-field="hum" data-sortable="true">Humidity</th>
   </tr>
   </thead>
