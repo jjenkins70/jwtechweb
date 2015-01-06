@@ -16,12 +16,14 @@
   <h3>Temperature and Humidity</h3>
   </div>
   <div class="row">
-  <table class=" table table-striped table-bordered table-hover">
+  <table class="table table-striped table-bordered table-hover" data-sort-name="date" data-sort-order="desc">
+  <thead>
   <tr>
-	<th>Date</th>
-	<th>Temperature</th>
-	<th>Humidity</th>
+	<th data-field="date" data-sortable="true">Date</th>
+	<th data-field="temp" data-sortable="true">Temperature</th>
+	<th data-field="hum" data-sortable="true">Humidity</th>
   </tr>
+  </thead>
 <tbody>
 
 <?php
