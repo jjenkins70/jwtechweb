@@ -13,7 +13,7 @@
 <body>
 <div class="container">
   <div class="row">
-  <h3>Temperature and Humidity</h3>
+  <h3>Temperature and Humidity - Past 24 hours</h3>
   </div>
   <div class="table-responsive">
   <table id="dataResults" class="table table-striped table-bordered table-hover" data-sort-name="date" data-sort-order="desc">
@@ -28,7 +28,7 @@
 
 <?php
    include 'config/db.php';
-   $sql = "SELECT date, temp, hum FROM TempHumid order by date desc";
+   $sql = "SELECT date, temp, hum FROM TempHumid order by date desc LIMIT 144";
    //$result = $mysqli->query($sql);
    $result = mysql_query($sql);
 
