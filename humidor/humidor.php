@@ -1,5 +1,13 @@
 <?php
+<<<<<<< HEAD
 include "config/database.php";
+=======
+$servername = "";
+$username = "";
+$password = "";
+$dbname = "";
+
+>>>>>>> 58f5eced6c94bd983d99a1c42af1110a6fc1d73f
 // Create Connection
 //$mysqli = new mysqli($servername,$username,$password,$dbname);
 // Check connection
