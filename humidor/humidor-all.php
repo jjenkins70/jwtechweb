@@ -13,23 +13,22 @@
 <body>
 <div class="container">
   <div class="row">
-  <h3>Temperature and Humidity - Past 24 hours time in ET</h3>
+  <h3>Temperature and Humidity - All Available</h3>
   </div>
   <div class="table-responsive">
   <table id="dataResults" class="table table-striped table-bordered table-hover" data-sort-name="date" data-sort-order="desc">
   <thead>
   <tr>
-	<th data-field="date" data-sortable="true">Date</th>
-	<th data-field="temp" data-sortable="true">Temperature</th>
-	<th data-field="hum" data-sortable="true">Humidity</th>
+	<th class="col-sm-2" data-field="date" data-sortable="true">Date (ET)</th>
+	<th class="col-sm-2" data-field="temp" data-sortable="true">Temperature (F)</th>
+	<th class="col-sm-2" data-field="hum" data-sortable="true">Humidity</th>
   </tr>
   </thead>
 <tbody>
 
 <?php
    include 'config/db.php';
-   date_default_timezone_set('America/New_York');
-   $sql = "SELECT date, temp, hum FROM TempHumid order by date desc LIMIT 144";
+   $sql = "SELECT convert_tz(date,'UTC','EST') as date, format(temp,2), format(hum,2) FROM TempHumid order by date desc";
    //$result = $mysqli->query($sql);
    $result = mysql_query($sql);
 
@@ -37,8 +36,8 @@
 
 	echo '<tr>';
 	echo '<td>'. $row['date'] . '</td>';
-	echo '<td>'. $row['temp'] . '</td>';
-	echo '<td>'. $row['hum'] . '</td>';
+	echo '<td>'. $row['format(temp,2)'] . '</td>';
+	echo '<td>'. $row['format(hum,2)'] . '</td>';
 	//echo '<td>&nbsp;</td>';
 	echo '</tr>';
   }
