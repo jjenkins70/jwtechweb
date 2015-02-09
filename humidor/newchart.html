@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>Cigar Humidor Monitor with Raspberry Pi </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Raspberry PI Humidor monitor">
-    <meta name="keywords" content="Raspberry Pi, Pi, Python, Mysql, PHP,Project Management, Program Management, Winchester, IT Operations, Cloud, Modernization">
-    <meta name="author" content="Jeremiah Jenkins">
-    <meta name="google-site-verification" content="GtvPRCOFJk8uSieqjgLnT_AOeDSBhq20utoHwkBFpqI" />
-
     <!-- Le styles -->
     <link href="../css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
@@ -49,6 +41,7 @@
       }
     </style>
     <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -61,53 +54,69 @@
                     <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="ico/favicon.png">
   </head>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-  <body>
+<body>
+<p>This is a graph sample</p>
+		<div style="width:30%">
+			<div>
+				<canvas id="canvas" height="450" width="600"></canvas>
+			</div>
+		</div>
 
-    <div class="container-narrow">
 
-      <div class="masthead">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href=http://blog.jwtechnologies.biz>Blog</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-        <h3 class="muted">Technical Project & Program Management</h3>
-      </div>
-      <hr>
+	<script type="text/javascript">
+		//:$(document).ready(function() {
+		//$.getJSON("data-all-json.php", function(data) {
+		$.getJSON("data-temp.php", function(data) {
+		var jData = jQuery.parseJSON(data);
+		var tDate = jData.date;
+		var Temp = jData.temp;
+		//var Hum = jData.format(hum,2);
+	
+		alert(data[0].Temp);
 
-      <div class="jumbotron">
-        <h2>Raspberry Pi Humidor Monitor </h2>
-        <p class="lead">My first Raspberry Pi Project </p>
-      </div>
-      <hr>
-      <div class="row-fluid marketing">
-        <div class="span6">
-	<p>My first Raspberry pi project using AWS, MySQL, PHP, Python and of course Pi</P>
-          <h4>Humidity & Temperature Monitors</h4>
-	   <p>The past 24 hours: <a href="boot-hum.php">24 hours</a></p>
-	   <p>All readings that are available: <a href="humidor-all.php "> ALL Available</a></p>
-          <h4>Placeholder for Graphs</h4>
-          <p>Graphs to come.</p>
-	  <br>
-	  <br>
-	  <p> You can follow us on Twitter <a href=http://twitter.com/jw_tech>@JW_TECH</a></p>
-	  <h4>Blog</h4>
-          <p>You can find our Blog about technology and other stuff at <a href=http://blog.jwtechnologies.biz>Blog.Jwtechnologies.biz</a></p><br>
-        <a class="btn btn-large btn-success" href="http://eepurl.com/u_rXr">Subscribe to our Mailing List</a>
-	</div>
-      </div>
-      <hr>
-      <div class="footer">
+
+		var lineChartData = {
+			labels : description,
+			datasets: [
+				{
+					label: "My First dataset",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : Temp
+				},
+				{
+					label: "My Second dataset",
+					fillColor : "rgba(151,187,205,0.2)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(151,187,205,1)",
+					data : Hum
+				}
+			]
+		}
+	window.onload = function(){
+		var ctx = document.getElementById("canvas").getContext("2d");
+		window.myLine = new Chart(ctx).Line(lineChartData, {
+			responsive: true
+		});
+	}
+    });
+	</script>
+<br><hr>
+ <div class="footer">
 	<p align=center>&copy; JW Technologies, Inc 2015</p>&nbsp;&nbsp; <a href="https://twitter.com/JW_Tech"><img src="../ico/social_twitter.png"/></a>&nbsp;&nbsp;<a href="https://facebook.com/jjenkins70"><img src="../ico/social_facebook.png"/></a>&nbsp;&nbsp;<a href="https://linkedin.com/in/jjenkins70"><img src="../ico/social_linkedin.png"/></a>
 
 
-     </div>
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap-transition.js"></script>
     <script src="../js/bootstrap-alert.js"></script>
     <script src="../js/bootstrap-modal.js"></script>
@@ -120,6 +129,7 @@
     <script src="../js/bootstrap-collapse.js"></script>
     <script src="../js/bootstrap-carousel.js"></script>
     <script src="../js/bootstrap-typeahead.js"></script>
+    <script src="../js/Chart.min.js"></script>
     <script type="text/javascript">
    	var _gaq = _gaq || [];
 	 _gaq.push(['_setAccount', 'UA-38352761-1']);

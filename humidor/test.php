@@ -8,14 +8,12 @@
   -->
 
   <!-- Latest compiled and minified JavaScript -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 <body>
 <div class="container">
   <div class="row">
-  <h3>Temperature and Humidity - Past 24 hours</h3>
+  <h3>Temperature and Humidity - All Available</h3>
   </div>
   <div class="table-responsive">
   <table id="dataResults" class="table table-striped table-bordered table-hover" data-sort-name="date" data-sort-order="desc">
@@ -30,19 +28,18 @@
 
 <?php
    include 'config/db.php';
-   $sql = "SELECT convert_tz(date,'UTC','EST') as date, format(temp,2), format(hum,2) FROM TempHumid order by date desc LIMIT 144";
+   $sql = "SELECT convert_tz(date,'UTC','EST') as date, format(temp,2), format(hum,2) FROM TempHumid order by date desc";
+   //$sqldata = mysql_query("SELECT convert_tz(date,'UTC','EST') as date, format(temp,2), format(hum,2) FROM TempHumid order by date desc");
    //$result = $mysqli->query($sql);
-   $result = mysql_query($sql);
-
-   while ($row = mysql_fetch_array($result)) {
-
-	echo '<tr>';
-	echo '<td>'. $row['date'] . '</td>';
-	echo '<td>'. $row['format(temp,2)'] . '</td>';
-	echo '<td>'. $row['format(hum,2)'] . '</td>';
-	//echo '<td>&nbsp;</td>';
-	echo '</tr>';
-  }
+  $result = mysql_query($sql);
+  $response = array();
+  while ($row = mysql_fetch_assoc($result, MYSQL_ASSOC)) {
+	$row_array['date'] = $row['date'];
+	$row_array['Temp'] = $row['format(temp,2)'];
+	$row_array['Hum'] = $row['format(hum,2)'];
+  array_push($response,$row_array);
+}
+echo json_encode($response);
 
 $mysqli = null;
  ?>
